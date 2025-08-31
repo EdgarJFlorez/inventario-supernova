@@ -29,7 +29,7 @@ public class MovimientoInventarioServiceImpl implements MovimientoInventarioServ
     @jakarta.transaction.Transactional
     public MovimientoInventario registrar(MovimientoDTO dto) {
         // 1) Buscar producto
-        Producto producto = productoRepository.findById(dto.getProductoId())
+        Producto producto = productoRepository.findByIdForUpdate(dto.getProductoId())
                 .orElseThrow(() -> new RecursoNoEncontradoException("Producto no encontrado: " + dto.getProductoId()));
 
         // 2) Calcular nuevo stock según tipo
